@@ -29,7 +29,7 @@ abstract class Pojo implements ArrayAccess
 
     public function toArray()
     {
-        return $this->data;
+        return $this->data ?? [];
     }
 
     /**
@@ -40,7 +40,8 @@ abstract class Pojo implements ArrayAccess
     public function offsetGet($offset)
     {
         if ($this->offsetExists($offset)) {
-            return $this->{$offset};
+            $property = lcfirst(to_camel_case($offset));
+            return $this->{$property};
         }
 
         return null;
@@ -53,7 +54,7 @@ abstract class Pojo implements ArrayAccess
      */
     public function offsetExists($offset): bool
     {
-        return property_exists($this, $offset);
+        return property_exists($this, lcfirst(to_camel_case($offset)));
     }
 
     /**
@@ -65,7 +66,8 @@ abstract class Pojo implements ArrayAccess
     public function offsetSet($offset, $value): Pojo
     {
         if ($this->offsetExists($offset)) {
-            return $this->{$offset} = $this->data[$offset] = $value;
+            $property = lcfirst(to_camel_case($offset));
+            return $this->{$property} = $this->data[$offset] = $value;
         }
         return $this;
     }
@@ -76,7 +78,8 @@ abstract class Pojo implements ArrayAccess
     public function offsetUnset($offset)
     {
         if ($this->offsetExists($offset)) {
-            $this->{$offset} = null;
+            $property = lcfirst(to_camel_case($offset));
+            $this->{$property} = null;
             unset($this->data[$offset]);
         }
     }
