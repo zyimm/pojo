@@ -1,0 +1,18 @@
+{
+  "name": "zyimm/php-pojo",
+  "description": "将PHP数据转换为Java的pojo工具",
+  "authors": [
+    {
+      "name": "zyimm"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Zyimm\\Pojo\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.0",
+    "ext-json": "*"
+  }
+}
