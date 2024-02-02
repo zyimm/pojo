@@ -9,7 +9,10 @@
   "autoload": {
     "psr-4": {
       "Zyimm\\Pojo\\": "src/"
-    }
+    },
+    "files": [
+      "src/function.php"
+    ]
   },
   "require": {
     "php": ">=7.0",
