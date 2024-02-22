@@ -2,7 +2,14 @@
 namespace Zyimm\Pojo;
 
 if (!function_exists('to_camel_case')) {
-    function to_camel_case($input): string
+    /**
+     * to_camel_case
+     *
+     * @param string $input
+     *
+     * @return string
+     */
+    function to_camel_case(string $input): string
     {
         $parts  = explode('_', $input);
         $result = $parts[0];

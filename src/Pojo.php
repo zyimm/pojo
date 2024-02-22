@@ -22,11 +22,22 @@ abstract class Pojo implements ArrayAccess
         }
     }
 
+    /**
+     * toJson
+     *
+     * @return false|string
+     */
     public function toJson()
     {
         return json_encode($this->data);
     }
 
+
+    /**
+     * toArray
+     *
+     * @return array|mixed
+     */
     public function toArray()
     {
         return $this->data ?? [];
@@ -78,7 +89,7 @@ abstract class Pojo implements ArrayAccess
     public function offsetUnset($offset)
     {
         if ($this->offsetExists($offset)) {
-            $property = lcfirst(to_camel_case($offset));
+            $property          = lcfirst(to_camel_case($offset));
             $this->{$property} = null;
             unset($this->data[$offset]);
         }
