@@ -11,9 +11,9 @@ composer  require zyimm/php-pojo
 ```php
 class DemoDto extends \Zyimm\Pojo\Pojo
 {
-    private $id；
+    protected $id；
     
-    private $name;
+    protected $name;
     
     /**
      * @return mixed
