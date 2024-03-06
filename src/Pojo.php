@@ -12,7 +12,7 @@ abstract class Pojo implements ArrayAccess
     {
         foreach ($data as $property => $value) {
             if (strtolower((string)$property) == 'data') {
-                break;
+                continue;
             }
             $method = 'set'.to_camel_case($property);
             if (method_exists($this, $method)) {
