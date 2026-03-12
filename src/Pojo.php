@@ -22,13 +22,19 @@ abstract class Pojo implements ArrayAccess
         }
     }
 
-    /**
-     * toJson
-     *
-     * @return false|string
+   /**
+     * 转换为 JSON 字符串
+     * 
+     * @param int $options JSON 编码选项（默认：UTF8 编码）
+     * @return string JSON 字符串
+     * @throws JsonException 当编码失败时抛出
      */
-    public function toJson()
+    public function toJson(int $options = JSON_UNESCAPED_UNICODE): string
     {
+         // 捕获 JSON 编码错误并抛出异常
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \JsonException('JSON encode failed: ' . json_last_error_msg());
+        }
         return json_encode($this->data);
     }
 
